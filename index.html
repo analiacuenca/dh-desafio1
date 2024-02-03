@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="icon" type="image/x-icon" href="data:," />
+    <meta charset="UTF-8">
+    <title>Blockly Ejemplo</title>
+    <!-- Load Blockly core -->
+    <script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+    <!-- Load the default blocks -->
+    <script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+    <!-- Load a generator -->
+    <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+    <!-- Load a message file -->
+    <script src="https://unpkg.com/blockly/msg/en.js"></script>
+</head>
+
+<body>
+    <!-- Contenedor para el workspace de Blockly -->
+    <div id="blocklyDiv" style="height: 480px; width: 600px; display: inline-block;"></div>
+    <!-- Contenedor para la caja de herramientas -->
+    <div id="toolbox" style="display: none;">
+        <category name="Mis Bloques" colour="260">
+            <block type="saludar"></block>
+        </category>
+    </div>
+    <!-- Botón para ejecutar el código -->
+    <button id="ejecutarBtn">Ejecutar</button>
+    <!-- Script personalizado para manejar Blockly -->
+    <script src="script.js"></script>
+</body>
+
+</html>
