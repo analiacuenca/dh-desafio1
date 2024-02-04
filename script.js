@@ -24,8 +24,6 @@ javascript.javascriptGenerator.forBlock["saludar"] = function (
   // return [code, Order.ATOMIC];
 };
 
-
-
 // Configuración de la caja de herramientas con el bloque "saludar"
 const toolboxDefinicion = {
   kind: "flyoutToolbox",
@@ -37,25 +35,16 @@ const toolboxDefinicion = {
   ],
 };
 
-//  Inyecta al espacio de trabajo de Blocky
+//  Inyecta al espacio de trabajo de Blocky y las bloques dentro de la toolbox
 const workspace = Blockly.inject("blocklyDiv", {
   toolbox: toolboxDefinicion,
 });
 
-// Asigna la función ejecutarCodigo al evento click del botón
-document
-  .getElementById("ejecutarBtn")
-  .addEventListener("click", ejecutarCodigo);
 
 // Función para ejecutar el código generado por el usuario
 function ejecutarCodigo() {
   // Obtiene el código JavaScript generado por los bloques en el workspace
   var codigo = Blockly.JavaScript.workspaceToCode(workspace);
 
-  // Ejecuta el código usando eval
-  eval(codigo);
-  // Reasocia el evento click al botón
-  document
-    .getElementById("ejecutarBtn")
-    .addEventListener("click", ejecutarCodigo);
+  document.getElementById('CodigoResultante').value = codigo;
 }
