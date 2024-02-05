@@ -1,27 +1,74 @@
-// Configuración inicial de Blockly
-Blockly.Blocks["saludar"] = {
+// Configuración bloque saludar
+Blockly.Blocks["block_saludar"] = {
   init: function () {
     this.appendDummyInput()
       .appendField("saludar")
       .appendField(new Blockly.FieldTextInput("nombre"), "NAME");
-    this.setPreviousStatement(true, null);
-    this.setColour(260);
+    this.setColour(135);
     this.setTooltip("");
     this.setHelpUrl("");
   },
 };
 
-// 1era opcion Generador para el bloque "saludar"
-javascript.javascriptGenerator.forBlock["saludar"] = function (
+// Configuración bloque preguntar
+Blockly.Blocks["block_preguntar"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("preguntar")
+      .appendField(new Blockly.FieldTextInput("pregunta"), "PREGUNTA");
+    this.setColour(345);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+
+// Configuración bloque sumar
+Blockly.Blocks['block_sumar'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("sumar")
+        .appendField(new Blockly.FieldTextInput("numA"), "A")
+        .appendField("+")
+        .appendField(new Blockly.FieldTextInput("numB"), "B");
+    this.setColour(20);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+// generador de código para el bloque "saludar"
+javascript.javascriptGenerator.forBlock["block_saludar"] = function (
   block,
   generator
 ) {
   var text_name = block.getFieldValue("NAME");
-  // TODO: Assemble javascript into code variable.
-  var code = `alert("¡Hola, ${text_name}!");\n`;
-  // var code = `"${text_name}"`
+  var codigo = `alert("¡Hola, ${text_name}!");\n`;
+  // eval(codigo);
+  return codigo;
+};
+
+// generador de código para el bloque "preguntar"
+javascript.javascriptGenerator.forBlock["block_preguntar"] = function (
+  block,
+  generator
+) {
+  var text_pregunta = block.getFieldValue("PREGUNTA");
+  var code = `prompt("${text_pregunta}");\n`;
   return code;
-  // return [code, Order.ATOMIC];
+};
+
+// generador de código para el bloque "preguntar"
+javascript.javascriptGenerator.forBlock["block_sumar"] = function (
+  block,
+  generator
+) {
+  var numeroA = block.getFieldValue("A");
+  var numeroB = block.getFieldValue("B");
+  var code = `resultado = ${numeroA} + ${numeroB}\n`;
+  var sumatoria = parseInt(numeroA) + parseInt(numeroB);
+  code += `alert("El resultado de tu suma: ${sumatoria}");\n`;
+  return code;
 };
 
 // Configuración de la caja de herramientas con el bloque "saludar"
@@ -30,21 +77,34 @@ const toolboxDefinicion = {
   contents: [
     {
       kind: "block",
-      type: "saludar",
+      type: "block_saludar",
     },
+    {
+      kind: "block",
+      type: "block_preguntar",
+    },
+    {
+      kind: "block",
+      type: "block_sumar",
+    }
   ],
 };
 
-//  Inyecta al espacio de trabajo de Blocky y las bloques dentro de la toolbox
+//  Inyecci al espacio de trabajo de Blocky y las bloques dentro de la toolbox
 const workspace = Blockly.inject("blocklyDiv", {
   toolbox: toolboxDefinicion,
 });
 
 
-// Función para ejecutar el código generado por el usuario
 function ejecutarCodigo() {
   // Obtiene el código JavaScript generado por los bloques en el workspace
   var codigo = Blockly.JavaScript.workspaceToCode(workspace);
 
-  document.getElementById('CodigoResultante').value = codigo;
+  try {
+    eval(codigo);
+    document.getElementById("CodigoResultante").value = codigo;
+  } catch (error) {
+    document.getElementById("CodigoResultante").value =
+      "Error al ejecutar el código: " + error;
+  }
 }

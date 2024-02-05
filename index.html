@@ -18,11 +18,18 @@
 <body>
     <!-- Contenedor para el workspace de Blockly -->
     <div id="blocklyDiv" style="height: 400px; width: 500px; display: inline-block;"></div>
+
     <!-- Contenedor para la caja de herramientas -->
-    <div id="toolbox" style="display: none;"></div>
-    <!-- Botón para ejecutar el código -->
-    <button onclick="ejecutarCodigo()">Ejecutar</button>
-    <textarea id="CodigoResultante" style="height: 300px; width: 400px; display: inline-block;"></textarea>
+    <div id="toolbox" style="display: none;">
+        <!-- Contenido de la caja de herramientas -->
+    </div>
+
+    <!-- Botón para ejecutar la traducción del código -->
+    <button id="ejecutarCodigo" onclick="ejecutarCodigo()">Ejecutar</button>
+
+    <!-- Textarea para mostrar el código resultante -->
+    <textarea id="CodigoResultante" style="height: 390px; width: 500px; display: inline-block;"></textarea>
+
     <!-- Script personalizado para manejar Blockly -->
     <script src="script.js"></script>
 </body>
