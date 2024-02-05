@@ -15,7 +15,7 @@ Blockly.Blocks["block_preguntar"] = {
   init: function () {
     this.appendDummyInput()
       .appendField("preguntar")
-      .appendField(new Blockly.FieldTextInput("pregunta"), "PREGUNTA");
+      .appendField(new Blockly.FieldTextInput("¿?"), "PREGUNTA");
     this.setColour(345);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -54,7 +54,7 @@ javascript.javascriptGenerator.forBlock["block_preguntar"] = function (
   generator
 ) {
   var text_pregunta = block.getFieldValue("PREGUNTA");
-  var code = `prompt("${text_pregunta}");\n`;
+  var code = `prompt("Inserte su pregunta", "${text_pregunta}");\n`;
   return code;
 };
 
