@@ -90,14 +90,14 @@ const toolboxDefinicion = {
   ],
 };
 
-//  Inyecci al espacio de trabajo de Blocky y las bloques dentro de la toolbox
+//  Inyección al espacio de trabajo de Blocky y las bloques dentro de la toolbox
 const workspace = Blockly.inject("blocklyDiv", {
   toolbox: toolboxDefinicion,
 });
 
 
 function ejecutarCodigo() {
-  // Obtiene el código JavaScript generado por los bloques en el workspace
+  // Obtengo el código JavaScript generado por los bloques en el workspace
   var codigo = Blockly.JavaScript.workspaceToCode(workspace);
 
   try {
